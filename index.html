@@ -141,6 +141,58 @@
       box-shadow:0 4px 15px rgba(0,0,0,0.05);
       }
 
+    #galeria{
+      padding:70px 20px;
+    }
+
+      .carrossel-container{
+        position:relative;
+        max-width:900px;
+        margin:auto;
+        overflow:hidden;
+        border-radius:20px;
+      }
+      
+      .carrossel{
+        display:flex;
+        transition:transform 0.5s ease-in-out;
+      }
+      
+      .carrossel img{
+        width:100%;
+        flex-shrink:0;
+        border-radius:20px;
+        object-fit:cover;
+        max-height:500px;
+      }
+      
+      .btn{
+        position:absolute;
+        top:50%;
+        transform:translateY(-50%);
+        background:rgba(0,0,0,0.4);
+        color:#fff;
+        border:none;
+        padding:15px;
+        cursor:pointer;
+        font-size:2rem;
+        border-radius:50%;
+        z-index:10;
+        transition:0.3s;
+      }
+      
+      .btn:hover{
+        background:rgba(0,0,0,0.7);
+      }
+      
+      .prev{
+        left:15px;
+      }
+      
+      .next{
+        right:15px;
+      }
+
     .certificados{
       padding:70px 20px;
       text-align:center;
@@ -220,6 +272,48 @@
   </style>
 </head>
 
+  <script>
+  const carrossel = document.querySelector('.carrossel');
+  const imagens = document.querySelectorAll('.carrossel img');
+
+  let index = 0;
+
+  document.querySelector('.next').addEventListener('click', () => {
+    index++;
+
+    if(index >= imagens.length){
+      index = 0;
+    }
+
+    atualizarCarrossel();
+  });
+
+  document.querySelector('.prev').addEventListener('click', () => {
+    index--;
+
+    if(index < 0){
+      index = imagens.length - 1;
+    }
+
+    atualizarCarrossel();
+  });
+
+  function atualizarCarrossel(){
+    carrossel.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  // autoplay
+  setInterval(() => {
+    index++;
+
+    if(index >= imagens.length){
+      index = 0;
+    }
+
+    atualizarCarrossel();
+  }, 4000);
+</script>
+  
 <body>
 
   <header>
@@ -349,6 +443,33 @@
 
     </div>
   </section>
+
+  <!-- GALERIA -->
+<section id="galeria">
+
+  <div class="section-title">
+    <h2>Momentos Especiais</h2>
+    <p>Alguns registros de acolhimento e cuidado.</p>
+  </div>
+
+  <div class="carrossel-container">
+
+    <button class="btn prev">&#10094;</button>
+
+    <div class="carrossel">
+
+      <img src="./img/foto01.jpg" alt="Momento 1">
+      <img src="./img/foto02.jpg" alt="Momento 2">
+      <img src="./img/foto03.jpg" alt="Momento 3">
+      <img src="./img/foto04.jpg" alt="Momento 4">
+
+    </div>
+
+    <button class="btn next">&#10095;</button>
+
+  </div>
+
+</section>
   
 <!-- CERTIFICADOS -->
 <section id="certificados" class="certificados">
