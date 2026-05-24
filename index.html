@@ -97,15 +97,18 @@
 
     .sobre img{
       width:100%;
+      max-width:400px;
+      margin:auto;
+      display:block;
       border-radius:20px;
       object-fit:cover;
-    }
+      }
 
     .cards{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
       gap:25px;
-    }
+      }
 
     .card{
       background:#fff;
@@ -138,43 +141,43 @@
       box-shadow:0 4px 15px rgba(0,0,0,0.05);
       }
 
-.certificados{
-  padding:70px 20px;
-  text-align:center;
-}
+    .certificados{
+      padding:70px 20px;
+      text-align:center;
+      }
 
-.certificados-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
-  margin-top:40px;
-}
-
-.certificado-card{
-  background:#fff;
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 5px 20px rgba(0,0,0,0.08);
-  transition:0.3s;
-}
-
-.certificado-card:hover{
-  transform:translateY(-6px);
-}
-
-.certificado-card img{
-  width:100%;
-  height:auto;
-  display:block;
-  object-fit:contain;
-  background:#fff;
-}
-
-.certificado-card p{
-  padding:18px;
-  font-weight:500;
-  color:#7a4e47;
-}
+    .certificados-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+      margin-top:40px;
+      }
+    
+    .certificado-card{
+      background:#fff;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 5px 20px rgba(0,0,0,0.08);
+      transition:0.3s;
+      }
+    
+    .certificado-card:hover{
+      transform:translateY(-6px);
+      }
+    
+    .certificado-card img{
+      width:100%;
+      height:auto;
+      display:block;
+      object-fit:contain;
+      background:#fff;
+      }
+    
+    .certificado-card p{
+      padding:18px;
+      font-weight:500;
+      color:#7a4e47;
+      }
     .contato{
       text-align:center;
       background:#fceeea;
