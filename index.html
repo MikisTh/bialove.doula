@@ -272,48 +272,7 @@
   </style>
 </head>
 
-  <script>
-  const carrossel = document.querySelector('.carrossel');
-  const imagens = document.querySelectorAll('.carrossel img');
-
-  let index = 0;
-
-  document.querySelector('.next').addEventListener('click', () => {
-    index++;
-
-    if(index >= imagens.length){
-      index = 0;
-    }
-
-    atualizarCarrossel();
-  });
-
-  document.querySelector('.prev').addEventListener('click', () => {
-    index--;
-
-    if(index < 0){
-      index = imagens.length - 1;
-    }
-
-    atualizarCarrossel();
-  });
-
-  function atualizarCarrossel(){
-    carrossel.style.transform = `translateX(-${index * 100}%)`;
-  }
-
-  // autoplay
-  setInterval(() => {
-    index++;
-
-    if(index >= imagens.length){
-      index = 0;
-    }
-
-    atualizarCarrossel();
-  }, 4000);
-</script>
-  
+ 
 <body>
 
   <header>
@@ -329,6 +288,7 @@
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#servicos">Serviços</a></li>
       <li><a href="#depoimentos">Depoimentos</a></li>
+       <li><a href="#Galeria">Galeria</a></li>
       <li><a href="#certificados">Certificados</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
@@ -517,6 +477,49 @@
   <footer>
     <p>© 2026 Doula Bia Love — Todos os direitos reservados.</p>
   </footer>
+
+    <script>
+  const carrossel = document.querySelector('.carrossel');
+  const imagens = document.querySelectorAll('.carrossel img');
+
+  let index = 0;
+
+  document.querySelector('.next').addEventListener('click', () => {
+    index++;
+
+    if(index >= imagens.length){
+      index = 0;
+    }
+
+    atualizarCarrossel();
+  });
+
+  document.querySelector('.prev').addEventListener('click', () => {
+    index--;
+
+    if(index < 0){
+      index = imagens.length - 1;
+    }
+
+    atualizarCarrossel();
+  });
+
+  function atualizarCarrossel(){
+    carrossel.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  // autoplay
+  setInterval(() => {
+    index++;
+
+    if(index >= imagens.length){
+      index = 0;
+    }
+
+    atualizarCarrossel();
+  }, 4000);
+</script>
+  
 
 </body>
 </html>
