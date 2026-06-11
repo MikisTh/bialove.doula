@@ -208,32 +208,22 @@
 .next{
     right:10px;
 }
-    #certificados .carrossel{
+   #certificados .carrossel-container{
+    overflow:hidden;
+    width:100%;
+}
+
+#certificados .carrossel{
     display:flex;
     gap:20px;
     transition:transform .5s ease;
 }
 
 #certificados .certificado-card{
-    flex:0 0 calc(33.333% - 14px);
-    background:#fff;
-    border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 4px 15px rgba(0,0,0,.08);
+    flex:0 0 calc((100% - 40px) / 3);
 }
 
-#certificados .certificado-card img{
-    width:100%;
-    height:260px;
-    object-fit:cover;
-}
-
-#certificados .certificado-card p{
-    padding:12px;
-    font-weight:600;
-}
-
-@media(max-width:768px){
+@media (max-width:768px){
 
     #certificados .certificado-card{
         flex:0 0 100%;
@@ -545,9 +535,12 @@ if(certificadoContainer){
     .querySelector('.next')
     .addEventListener('click', ()=>{
 
-        index += itensPorTela();
+        const maxIndex =
+        cards.length - itensPorTela();
 
-        if(index >= cards.length){
+        index++;
+
+        if(index > maxIndex){
             index = 0;
         }
 
@@ -558,13 +551,13 @@ if(certificadoContainer){
     .querySelector('.prev')
     .addEventListener('click', ()=>{
 
-        index -= itensPorTela();
+        const maxIndex =
+        cards.length - itensPorTela();
+
+        index--;
 
         if(index < 0){
-            index = Math.max(
-                cards.length - itensPorTela(),
-                0
-            );
+            index = maxIndex;
         }
 
         atualizar();
