@@ -513,6 +513,53 @@
 
 <script>
 
+  const galeriaContainer =
+document.querySelector('#galeria .carrossel-container');
+
+if(galeriaContainer){
+
+    const carrossel =
+    galeriaContainer.querySelector('.carrossel');
+
+    const imagens =
+    galeriaContainer.querySelectorAll('img');
+
+    let index = 0;
+
+    function atualizarGaleria(){
+        carrossel.style.transform =
+        `translateX(-${index * 100}%)`;
+    }
+
+    galeriaContainer
+    .querySelector('.next')
+    .addEventListener('click', ()=>{
+
+        index++;
+
+        if(index >= imagens.length){
+            index = 0;
+        }
+
+        atualizarGaleria();
+    });
+
+    galeriaContainer
+    .querySelector('.prev')
+    .addEventListener('click', ()=>{
+
+        index--;
+
+        if(index < 0){
+            index = imagens.length - 1;
+        }
+
+        atualizarGaleria();
+    });
+
+}
+  
+
 const certificadoContainer =
 document.querySelector('#certificados .carrossel-container');
 
