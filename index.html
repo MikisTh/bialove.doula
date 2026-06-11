@@ -151,12 +151,15 @@
 
 .carrossel{
     display:flex;
+    transition:transform .5s ease;
     gap:20px;
     overflow-x:auto;
     scroll-behavior:smooth;
     scrollbar-width:none;
     width:100%;
     padding:10px;
+  
+  
 }
 
 .carrossel::-webkit-scrollbar{
@@ -165,6 +168,7 @@
 
 .carrossel img{
     width:300px;
+    min-width:100%;  
     height:220px;
     object-fit:cover;
     border-radius:16px;
@@ -204,43 +208,38 @@
 .next{
     right:10px;
 }
-    .certificados{
-      padding:70px 20px;
-      text-align:center;
-      }
+    #certificados .carrossel{
+    display:flex;
+    gap:20px;
+    transition:transform .5s ease;
+}
 
-    .certificados-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:30px;
-      margin-top:40px;
-      }
-    
-    .certificado-card{
-      background:#fff;
-      border-radius:20px;
-      overflow:hidden;
-      box-shadow:0 5px 20px rgba(0,0,0,0.08);
-      transition:0.3s;
-      }
-    
-    .certificado-card:hover{
-      transform:translateY(-6px);
-      }
-    
-    .certificado-card img{
-      width:100%;
-      height:auto;
-      display:block;
-      object-fit:contain;
-      background:#fff;
-      }
-    
-    .certificado-card p{
-      padding:18px;
-      font-weight:500;
-      color:#7a4e47;
-      }
+#certificados .certificado-card{
+    flex:0 0 calc(33.333% - 14px);
+    background:#fff;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+#certificados .certificado-card img{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+}
+
+#certificados .certificado-card p{
+    padding:12px;
+    font-weight:600;
+}
+
+@media(max-width:768px){
+
+    #certificados .certificado-card{
+        flex:0 0 100%;
+    }
+
+}
     .contato{
       text-align:center;
       background:#fceeea;
@@ -516,52 +515,63 @@
 
 <script>
 
-document.querySelectorAll('.carrossel-container').forEach(container => {
+const certificadoContainer =
+document.querySelector('#certificados .carrossel-container');
 
-    const carrossel = container.querySelector('.carrossel');
-    const slides = carrossel.children;
+if(certificadoContainer){
+
+    const carrossel =
+    certificadoContainer.querySelector('.carrossel');
+
+    const cards =
+    certificadoContainer.querySelectorAll('.certificado-card');
 
     let index = 0;
 
-    function atualizarCarrossel() {
-        carrossel.style.transform = `translateX(-${index * 100}%)`;
+    function itensPorTela(){
+        return window.innerWidth <= 768 ? 1 : 3;
     }
 
-    container.querySelector('.next').addEventListener('click', () => {
+    function atualizar(){
 
-        index++;
+        const largura =
+        cards[0].offsetWidth + 20;
 
-        if (index >= slides.length) {
+        carrossel.style.transform =
+        `translateX(-${index * largura}px)`;
+    }
+
+    certificadoContainer
+    .querySelector('.next')
+    .addEventListener('click', ()=>{
+
+        index += itensPorTela();
+
+        if(index >= cards.length){
             index = 0;
         }
 
-        atualizarCarrossel();
+        atualizar();
     });
 
-    container.querySelector('.prev').addEventListener('click', () => {
+    certificadoContainer
+    .querySelector('.prev')
+    .addEventListener('click', ()=>{
 
-        index--;
+        index -= itensPorTela();
 
-        if (index < 0) {
-            index = slides.length - 1;
+        if(index < 0){
+            index = Math.max(
+                cards.length - itensPorTela(),
+                0
+            );
         }
 
-        atualizarCarrossel();
+        atualizar();
     });
 
-    // autoplay individual
-    setInterval(() => {
+    window.addEventListener('resize', atualizar);
 
-        index++;
-
-        if (index >= slides.length) {
-            index = 0;
-        }
-
-        atualizarCarrossel();
-
-    }, 4000);
-
-});
+}
 
 </script>
